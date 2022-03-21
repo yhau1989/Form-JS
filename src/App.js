@@ -13,7 +13,9 @@ function App() {
   let client = 'ac4b51080e3988f030b00c0da79579e6';
   let password = '08a7006bab6a268350b8c9225d9e7de5';
  
-  const handleSendMail = () => {  
+  const handleSendMail = (event) => {  
+    event.preventDefault();
+    setEnviado(3); 
     emailjs.send("service_gs4lpmp","template_6nzwbcv", {
       from_name: nombre,
       from_email: correo,
@@ -41,7 +43,7 @@ function App() {
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 px-4 py-4">¡Haz un comentario!</h2>
           </div>
-          <div className="mt-8 space-y-4" action="#">
+          <form className="mt-8 space-y-4" onSubmit={handleSendMail}>
             <div className="rounded-md shadow-sm space-y-4">
               <div>
                 <label htmlFor="nombre" className="sr-only">
@@ -105,16 +107,23 @@ function App() {
                   </div>
                 )
               }
+              {
+                enviado === 3 && (
+                  <div>
+                    Cargando......
+                  </div>
+                )
+              }
             </div>
-            <div>
-              <button
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick= {handleSendMail}
-              >
-                Enviar
-              </button>
-            </div>
-          </div>
+            {
+              enviado !== 3 && (
+                <input
+                  className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  type="submit" value="Enviar" 
+                />
+              )
+            }
+          </form>
         </div>
       </div>
       </>
