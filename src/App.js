@@ -8,10 +8,6 @@ function App() {
   const [correo, setCorreo] = useState('');
   const [comentario, setComentario] = useState('');
   const [enviado, setEnviado] = useState(0);
-
-  let url = 'https://api.mailjet.com/v3.1/send'
-  let client = 'ac4b51080e3988f030b00c0da79579e6';
-  let password = '08a7006bab6a268350b8c9225d9e7de5';
  
   const handleSendMail = (event) => {  
     event.preventDefault();
